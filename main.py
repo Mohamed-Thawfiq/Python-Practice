@@ -7,10 +7,13 @@ while True:
             user_text=input("Enter a todo:")
             todos.append(user_text)
 
-        case 'show':
+        case 'show'|'display':
             for item in todos:
+                item=item.title()
                 print(item)
         case 'exit':
             break
+        case whatever:
+            print("Hyy,you entered the wrong command just enter the correct word")
 
 print("byee")
