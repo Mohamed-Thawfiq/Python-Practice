@@ -8,14 +8,18 @@ while True:
             todos.append(user_text)
 
         case 'show'|'display':
-            for item in todos:
+            for index, item in enumerate(todos):
                 item=item.title()
-                print(item)
+                print(f"{index+1}.{item}")
         case 'edit':
             number=int(input("Enter the number of the todo to edit:"))
             number=number-1
             new_todo=input("Enter the new todo:")
             todos[number]=new_todo
+
+        case 'complete':
+            number=int(input("Enter the number of the todo to complete:"))
+            todos.pop(number-1)
         case 'exit':
             break
         case whatever:
