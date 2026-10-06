@@ -5,26 +5,54 @@ while True:
         case 'add':
             user_text=input("Enter a todo:")+"\n"
 
-            file=open('todos.txt','r')
-            todos=file.readlines()
-            file.close()
+            # file=open('todos.txt','r')
+            # todos=file.readlines()
+            # file.close()
+
+            with open('todos.txt','r') as file:
+                todos=file.readlines()
+                
             todos.append(user_text)
-            file=open('todos.txt','w')
-            file.writelines(todos)
-            file.close()
+            # file=open('todos.txt','w')
+            # file.writelines(todos)
+            # file.close()
+
+            with open('todos.txt','w') as file:
+                file.writelines(todos)
+
+
         case 'show'|'display':
-            file=open('todos.txt','r')
-            todos=file.readlines()
-            file.close()
+            # file=open('todos.txt','r')
+            # todos=file.readlines()
+            # file.close()
+
+            with open('todos.txt','r') as file:
+                todos=file.readlines()
+
             for index, item in enumerate(todos):
                 item=item.title()
                 print(f"{index+1}.{item}")
-        case 'edit':
-            number=int(input("Enter the number of the todo to edit:"))
-            number=number-1
-            new_todo=input("Enter the new todo:")
-            todos[number]=new_todo
 
+        # case 'edit':
+        #     number=int(input("Enter the number of the todo to edit:"))
+        #     number=number-1
+        #     new_todo=input("Enter the new todo:")
+        #     todos[number]=new_todo
+        #     with open('todos.txt','w') as file:
+        #         file.writelines(todos)
+
+        case "edit":
+            number = int(input("Number of the todo to edit: "))
+            number = number - 1
+
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
+
+            new_todo = input("Enter new todo: ")
+            todos[number] = new_todo + "\n"
+
+            with open("todos.txt", "w") as file:
+                file.writelines(todos)
         case 'complete':
             number=int(input("Enter the number of the todo to complete:"))
             todos.pop(number-1)
