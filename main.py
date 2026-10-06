@@ -13,6 +13,9 @@ while True:
             file.writelines(todos)
             file.close()
         case 'show'|'display':
+            file=open('todos.txt','r')
+            todos=file.readlines()
+            file.close()
             for index, item in enumerate(todos):
                 item=item.title()
                 print(f"{index+1}.{item}")
@@ -31,3 +34,15 @@ while True:
             print("Hyy,you entered the wrong command just enter the correct word")
 
 print("byee")
+
+
+
+
+
+
+content=['mohamed','thowfik','ahmed']
+filenames=['file1.txt','file2.txt','file3.txt']
+for content,filename in zip(content,filenames):
+    file=open(f"{filename}","w")
+    file.write(content)
+    file.close()
