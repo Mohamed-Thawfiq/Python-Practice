@@ -1,65 +1,64 @@
 while True:
     user_action=input("add or show or edit or exit:")
     user_action=user_action.strip()
-    match user_action:
-        case 'add':
-            user_text=input("Enter a todo:")+"\n"
+    if 'add' in user_action:
+        user_text=user_action[4:]
 
-            # file=open('todos.txt','r')
-            # todos=file.readlines()
-            # file.close()
+        # file=open('todos.txt','r')
+        # todos=file.readlines()
+        # file.close()
 
-            with open('todos.txt','r') as file:
-                todos=file.readlines()
-                
-            todos.append(user_text)
-            # file=open('todos.txt','w')
-            # file.writelines(todos)
-            # file.close()
+        with open('todos.txt','r') as file:
+            todos=file.readlines()
+            
+        todos.append(user_text)
+        # file=open('todos.txt','w')
+        # file.writelines(todos)
+        # file.close()
 
-            with open('todos.txt','w') as file:
-                file.writelines(todos)
+        with open('todos.txt','w') as file:
+            file.writelines(todos)
 
 
-        case 'show'|'display':
-            # file=open('todos.txt','r')
-            # todos=file.readlines()
-            # file.close()
+    if 'show' in user_action or 'display' in user_action:
+        # file=open('todos.txt','r')
+        # todos=file.readlines()
+        # file.close()
 
-            with open('todos.txt','r') as file:
-                todos=file.readlines()
+        with open('todos.txt','r') as file:
+            todos=file.readlines()
 
-            for index, item in enumerate(todos):
-                item=item.title()
-                print(f"{index+1}.{item}")
+        for index, item in enumerate(todos):
+            item=item.title()
+            print(f"{index+1}.{item}")
 
-        # case 'edit':
-        #     number=int(input("Enter the number of the todo to edit:"))
-        #     number=number-1
-        #     new_todo=input("Enter the new todo:")
-        #     todos[number]=new_todo
-        #     with open('todos.txt','w') as file:
-        #         file.writelines(todos)
+    # case 'edit':
+    #     number=int(input("Enter the number of the todo to edit:"))
+    #     number=number-1
+    #     new_todo=input("Enter the new todo:")
+    #     todos[number]=new_todo
+    #     with open('todos.txt','w') as file:
+    #         file.writelines(todos)
 
-        case "edit":
-            number = int(input("Number of the todo to edit: "))
-            number = number - 1
+    if 'edit' in user_action:
+        number = int(input("Number of the todo to edit: "))
+        number = number - 1
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+        with open("todos.txt", "r") as file:
+            todos = file.readlines()
 
-            new_todo = input("Enter new todo: ")
-            todos[number] = new_todo + "\n"
+        new_todo = input("Enter new todo: ")
+        todos[number] = new_todo + "\n"
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos)
-        case 'complete':
-            number=int(input("Enter the number of the todo to complete:"))
-            todos.pop(number-1)
-        case 'exit':
-            break
-        case whatever:
-            print("Hyy,you entered the wrong command just enter the correct word")
+        with open("todos.txt", "w") as file:
+            file.writelines(todos)
+    if 'complete' in user_action:
+        number=int(input("Enter the number of the todo to complete:"))
+        todos.pop(number-1)
+    if 'exit' in user_action:
+        break
+    if 'whatever' in user_action:
+        print("Hyy,you entered the wrong command just enter the correct word")
 
 print("byee")
 
